@@ -1,15 +1,23 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "../../utils/supabase/client";
 
 export default function LoginPage() {
   const router = useRouter();
+  const [invalidInvite, setInvalidInvite] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setInvalidInvite(
+      new URLSearchParams(window.location.search).get("error") ===
+        "convite-invalido",
+    );
+  }, []);
 
   async function signIn(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -39,6 +47,11 @@ export default function LoginPage() {
         <p className="auth-eyebrow">ACESSO RESTRITO</p>
         <h1>Entre para continuar.</h1>
         <p className="auth-copy">Use a conta individual fornecida pelo administrador.</p>
+        {invalidInvite && (
+          <p className="auth-error" role="alert">
+            Este convite é inválido ou expirou. Solicite um novo convite ao administrador.
+          </p>
+        )}
         <form className="auth-form" onSubmit={signIn}>
           <label>
             E-mail
