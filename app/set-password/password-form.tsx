@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "../../utils/supabase/client";
 
@@ -10,6 +10,22 @@ export function PasswordForm() {
   const [confirmation, setConfirmation] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [sessionReady, setSessionReady] = useState(false);
+
+  useEffect(() => {
+    const supabase = createClient();
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSessionReady(Boolean(session));
+    });
+
+    void supabase.auth.getSession().then(({ data }) => {
+      setSessionReady(Boolean(data.session));
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
 
   async function savePassword(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -64,7 +80,10 @@ export function PasswordForm() {
         />
       </label>
       {error && <p className="auth-error" role="alert">{error}</p>}
-      <button type="submit" disabled={loading}>
+      {!sessionReady && (
+        <p className="auth-copy" role="status">Validando convite…</p>
+      )}
+      <button type="submit" disabled={loading || !sessionReady}>
         {loading ? "Criando senha…" : "Criar senha e acessar"}
       </button>
     </form>
