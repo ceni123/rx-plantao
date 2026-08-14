@@ -24,8 +24,9 @@ export async function proxy(request: NextRequest) {
 
   const isLogin = request.nextUrl.pathname.startsWith("/login");
   const isAuthCallback = request.nextUrl.pathname.startsWith("/auth/confirm");
+  const isPasswordSetup = request.nextUrl.pathname.startsWith("/set-password");
 
-  if (!user && !isLogin && !isAuthCallback) {
+  if (!user && !isLogin && !isAuthCallback && !isPasswordSetup) {
     const url = request.nextUrl.clone();
     url.pathname = "/login";
     url.search = "";
