@@ -1,17 +1,6 @@
-import { redirect } from "next/navigation";
-import { createClient } from "../../utils/supabase/server";
 import { PasswordForm } from "./password-form";
 
-export default async function SetPasswordPage() {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    redirect("/login?error=convite-invalido");
-  }
-
+export default function SetPasswordPage() {
   return (
     <main className="auth-page">
       <section className="auth-card">
@@ -22,7 +11,7 @@ export default async function SetPasswordPage() {
           Defina uma senha individual para acessar o Rx Plantão nos próximos plantões.
         </p>
         <PasswordForm />
-        <p className="auth-help">Conta: {user.email}</p>
+        <p className="auth-help">O convite é individual e expira por segurança.</p>
       </section>
     </main>
   );
