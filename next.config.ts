@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  /* Keep production configuration minimal for the free Vercel plan. */
 };
 
 export default nextConfig;
