@@ -14,17 +14,52 @@ export function PasswordForm() {
 
   useEffect(() => {
     const supabase = createClient();
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSessionReady(Boolean(session));
-    });
+    let active = true;
 
-    void supabase.auth.getSession().then(({ data }) => {
-      setSessionReady(Boolean(data.session));
-    });
+    async function validateRecoveryLink() {
+      const url = new URL(window.location.href);
+      const hash = new URLSearchParams(url.hash.slice(1));
+      const linkError = hash.get("error_description");
 
-    return () => subscription.unsubscribe();
+      if (linkError) {
+        if (active) setError("Este link é inválido ou expirou. Solicite uma nova recuperação de senha.");
+        return;
+      }
+
+      let { data } = await supabase.auth.getSession();
+      let session = data.session;
+
+      if (!session) {
+        const code = url.searchParams.get("code");
+        const accessToken = hash.get("access_token");
+        const refreshToken = hash.get("refresh_token");
+
+        if (code) {
+          const result = await supabase.auth.exchangeCodeForSession(code);
+          session = result.data.session;
+        } else if (accessToken && refreshToken) {
+          const result = await supabase.auth.setSession({
+            access_token: accessToken,
+            refresh_token: refreshToken,
+          });
+          session = result.data.session;
+        }
+      }
+
+      if (!active) return;
+
+      if (session) {
+        setSessionReady(true);
+        window.history.replaceState({}, "", "/set-password");
+      } else {
+        setError("Não foi possível validar este link. Solicite uma nova recuperação de senha.");
+      }
+    }
+
+    void validateRecoveryLink();
+    return () => {
+      active = false;
+    };
   }, []);
 
   async function savePassword(event: FormEvent<HTMLFormElement>) {
@@ -80,7 +115,7 @@ export function PasswordForm() {
         />
       </label>
       {error && <p className="auth-error" role="alert">{error}</p>}
-      {!sessionReady && (
+      {!sessionReady && !error && (
         <p className="auth-copy" role="status">Validando convite…</p>
       )}
       <button type="submit" disabled={loading || !sessionReady}>
