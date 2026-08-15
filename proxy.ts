@@ -25,8 +25,10 @@ export async function proxy(request: NextRequest) {
   const isLogin = request.nextUrl.pathname.startsWith("/login");
   const isAuthCallback = request.nextUrl.pathname.startsWith("/auth/confirm");
   const isPasswordSetup = request.nextUrl.pathname.startsWith("/set-password");
+  const isPublicHome = request.nextUrl.pathname === "/";
+  const isSearchFile = request.nextUrl.pathname === "/robots.txt" || request.nextUrl.pathname === "/sitemap.xml";
 
-  if (!user && !isLogin && !isAuthCallback && !isPasswordSetup) {
+  if (!user && !isPublicHome && !isSearchFile && !isLogin && !isAuthCallback && !isPasswordSetup) {
     const url = request.nextUrl.clone();
     url.pathname = "/login";
     url.search = "";
@@ -35,7 +37,7 @@ export async function proxy(request: NextRequest) {
 
   if (user && isLogin) {
     const url = request.nextUrl.clone();
-    url.pathname = "/";
+    url.pathname = "/protocolos";
     url.search = "";
     return NextResponse.redirect(url);
   }
