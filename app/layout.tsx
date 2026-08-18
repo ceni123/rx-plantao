@@ -7,6 +7,9 @@ export const metadata:Metadata={
   alternates:{canonical:"/"},
   openGraph:{title:"Rx Plantão",description:"O essencial para decidir e agir no plantão.",url:"/",siteName:"Rx Plantão",locale:"pt_BR",type:"website"},
   robots:{index:true,follow:true},
-  verification:{google:"gB96kRUzYTgCpJls-0JzRgG0H_sVDoMH3mPPfMzKRh0"},
+  verification:{google:[
+    "gB96kRUzYTgCpJls-0JzRgG0H_sVDoMH3mPPfMzKRh0",
+    "1q-fU2D32kf_2vtSAmHsBcPT0RgF1lfN26jRaKxNpxE",
+  ]},
 };
 export default function RootLayout({children}:{children:React.ReactNode}){return <html lang="pt-BR"><body>{children}</body></html>}
