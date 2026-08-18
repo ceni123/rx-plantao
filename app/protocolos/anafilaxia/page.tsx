@@ -1,0 +1,6 @@
+import type {Metadata} from "next";
+import AnaphylaxisCalculator from "./calculator";
+
+export const metadata:Metadata={title:"Anafilaxia — conduta e prescrição",description:"Conduta rápida e cálculo de adrenalina IM para anafilaxia em adultos e pediatria."};
+
+export default function AnaphylaxisPage(){return <main className="condition-page"><header className="condition-nav"><a className="brand" href="/protocolos"><b>Rx</b><strong>Rx <span>Plantão</span></strong></a><a href="/protocolos">← Voltar à busca</a></header><section className="condition-hero red"><div><small>EMERGÊNCIA · CONDUTA COMPLETA</small><h1>Anafilaxia</h1><p>Adrenalina IM imediatamente. O cálculo e a prescrição ficam prontos após selecionar o paciente.</p></div><b>01</b></section><AnaphylaxisCalculator/><section className="condition-source"><div><small>FONTE PRINCIPAL</small><a href="https://www.saude.df.gov.br/documents/37101/0/Manejo%2Bbasico%2Bda%2Banafilaxia%2Bem%2Bambiente%2Bnao%2Bhospitalar%2Bpos%2Bvacina%C3%A7%C3%A3o%2B1.pdf/3f860189-d37e-3284-3851-aace186ae51e?t=1723740941632" target="_blank" rel="noreferrer">SES-DF — Manejo básico da anafilaxia, 2024 ↗</a></div><span>Revisado em 18 ago 2026</span></section></main>}
