@@ -347,6 +347,84 @@ const medications:Medication[]=[
   ],alerts:["Contraindicado na gestação e em histórico de angioedema por IECA.","Monitorizar creatinina e potássio; cautela em hipovolemia e estenose bilateral de artérias renais."],sources:["Referência pediátrica, fev/2024, anti-hipertensivos","Guia rápido de prescrições para o plantão, hipertensão","Ministério da Saúde — PCDT de hipertensão arterial sistêmica, 2025"],referenceUrl:"https://www.gov.br/conitec/pt-br/midias/protocolos/pcdt-hipertensao-arterial-sistemica.pdf/%40%40display-file/file"},
 ];
 
+const clinicalIndications:Record<string,string[]>={
+  dipirona:["Dor aguda leve a moderada","Febre com necessidade de antitérmico"],
+  paracetamol:["Dor leve a moderada","Febre","Alternativa quando AINE não é apropriado"],
+  ibuprofeno:["Dor inflamatória","Febre","Dismenorreia e processos musculoesqueléticos"],
+  ondansetrona:["Náuseas e vômitos","Vômitos persistentes durante terapia de reidratação oral","Náusea associada a medicamentos ou pós-operatório"],
+  nitazoxanida:["Giardíase","Criptosporidíase em indicação selecionada","Helmintíases sensíveis"],
+  secnidazol:["Giardíase","Amebíase intestinal","Amebíase hepática com esquema prolongado"],
+  cetoprofeno:["Dor aguda inflamatória","Dor musculoesquelética","Analgesia multimodal"],
+  morfina:["Dor aguda intensa","Analgesia titulada em síndrome coronariana selecionada","Dor grave em ambiente monitorizado"],
+  tramadol:["Dor moderada a intensa","Analgesia quando opioide fraco é apropriado"],
+  dimenidrinato:["Náuseas e vômitos","Cinetose","Vertigem com componente vestibular"],
+  domperidona:["Náuseas e vômitos em situações selecionadas","Sintomas relacionados à alteração de motilidade gastrointestinal"],
+  bromoprida:["Náuseas e vômitos","Gastroparesia e distúrbios de motilidade selecionados"],
+  simeticona:["Distensão abdominal por gases","Desconforto relacionado a flatulência"],
+  racecadotrila:["Adjuvante na diarreia aguda, associado à reidratação"],
+  albendazol:["Ascaridíase","Ancilostomíase","Enterobíase e outras helmintíases sensíveis"],
+  mebendazol:["Ascaridíase","Ancilostomíase","Enterobíase","Tricuríase"],
+  amoxicilina:["Otite média aguda bacteriana","Sinusite bacteriana","Pneumonia comunitária sensível","Faringoamigdalite estreptocócica"],
+  "amoxicilina-clavulanato":["Infecções respiratórias com suspeita de produtores de betalactamase","Mordeduras","Infecções odontogênicas","Infecções de pele selecionadas"],
+  azitromicina:["Pneumonia por agentes atípicos","Coqueluche","Uretrite ou cervicite por clamídia","Infecções bacterianas sensíveis"],
+  cefalexina:["Infecções de pele por microrganismos sensíveis","Faringoamigdalite estreptocócica","Cistite selecionada"],
+  ceftriaxona:["Sepse bacteriana empírica conforme foco","Meningite bacteriana em associação adequada","Pneumonia grave","Pielonefrite e gonorreia"],
+  metronidazol:["Infecções por anaeróbios","Vaginose bacteriana e tricomoníase","Giardíase e amebíase","Infecção intra-abdominal em associação"],
+  clindamicina:["Infecções de pele e partes moles","Infecções odontogênicas","Cobertura de anaeróbios selecionada","Inibição de toxinas em infecções invasivas específicas"],
+  fluconazol:["Candidíase mucosa","Candidíase vulvovaginal","Infecções fúngicas sensíveis em esquemas específicos"],
+  dexametasona:["Crupe","Edema de via aérea","Adjuvante na meningite bacteriana em situação indicada","Processos inflamatórios selecionados"],
+  hidrocortisona:["Crise adrenal","Asma grave como corticoide sistêmico","Choque refratário selecionado","Reação alérgica como terapia adjuvante"],
+  "prednisona-prednisolona":["Exacerbação de asma ou DPOC","Processos inflamatórios e autoimunes","Reações alérgicas como terapia adjuvante"],
+  dexclorfeniramina:["Urticária","Rinite alérgica","Prurido alérgico"],
+  loratadina:["Rinite alérgica","Urticária","Prurido alérgico"],
+  salbutamol:["Broncoespasmo na asma","Exacerbação de DPOC","Adjuvante temporário na hipercalemia"],
+  ciprofloxacino:["Infecções urinárias complicadas sensíveis","Infecções por gram-negativos selecionadas","Cobertura antipseudomonas quando indicada"],
+  levofloxacino:["Pneumonia comunitária em indicação selecionada","Pielonefrite e ITU complicada sensível","Infecções bacterianas sensíveis"],
+  nitrofurantoina:["Cistite baixa não complicada"],
+  fosfomicina:["Cistite não complicada em indicação selecionada"],
+  oseltamivir:["Tratamento de influenza","Profilaxia pós-exposição em indicação específica"],
+  "ampicilina-sulbactam":["Pneumonia aspirativa selecionada","Infecção intra-abdominal","Infecções odontogênicas e de pele","Infecções bacterianas sensíveis"],
+  cefepima:["Sepse hospitalar por gram-negativos","Neutropenia febril","Pneumonia hospitalar","Infecção por Pseudomonas sensível"],
+  cefuroxima:["Infecções respiratórias bacterianas sensíveis","Otite e sinusite","Infecções urinárias selecionadas"],
+  claritromicina:["Pneumonia por agentes atípicos","Infecções respiratórias sensíveis","Esquemas para Helicobacter pylori"],
+  oxacilina:["Bacteremia por MSSA","Endocardite por MSSA","Infecções de pele e osteoarticulares por MSSA"],
+  "piperacilina-tazobactam":["Sepse de foco abdominal ou urinário","Pneumonia hospitalar","Infecções polimicrobianas graves","Cobertura antipseudomonas"],
+  vancomicina:["Infecção invasiva por MRSA","Bacteremia por gram-positivos resistentes","Meningite bacteriana em esquema empírico selecionado","Endocardite conforme agente"],
+  amicacina:["Infecções graves por gram-negativos","Cobertura antipseudomonas em associação","Tuberculose resistente em esquemas especializados"],
+  gentamicina:["Infecções graves por gram-negativos","Sinergia em endocardite selecionada","Sepse neonatal em associação"],
+  aciclovir:["Herpes simples grave","Encefalite herpética","Herpes neonatal","Varicela em grupos com indicação antiviral"],
+  midazolam:["Sedação procedural","Indução para intubação","Interrupção de crise convulsiva","Sedação contínua"],
+  diazepam:["Interrupção de crise convulsiva","Estado de mal epiléptico como terapia inicial","Espasmo muscular em indicação selecionada"],
+  fenitoina:["Estado de mal epiléptico após benzodiazepínico","Prevenção de recorrência de crises em indicação específica"],
+  fenobarbital:["Estado de mal epiléptico","Crises neonatais","Manutenção anticonvulsivante selecionada"],
+  levetiracetam:["Carga no estado de mal epiléptico","Tratamento de crises focais ou generalizadas","Manutenção anticonvulsivante"],
+  cetamina:["Indução para intubação","Sedação dissociativa","Analgesia em procedimento","Broncoespasmo grave com necessidade de indução"],
+  etomidato:["Indução para intubação em paciente com reserva hemodinâmica limitada"],
+  propofol:["Indução anestésica","Sedação profunda","Sedação de procedimento em ambiente monitorizado"],
+  rocuronio:["Bloqueio neuromuscular na sequência rápida de intubação","Bloqueio neuromuscular durante ventilação mecânica em indicação específica"],
+  succinilcolina:["Bloqueio neuromuscular de início rápido para intubação"],
+  adrenalina:["Anafilaxia","Parada cardiorrespiratória","Choque com necessidade de vasopressor adicional","Bradicardia grave refratária em infusão"],
+  noradrenalina:["Choque séptico ou distributivo","Hipotensão vasoplégica refratária a volume"],
+  dobutamina:["Choque cardiogênico com baixo débito","Disfunção miocárdica com hipoperfusão","Insuficiência cardíaca aguda selecionada"],
+  dopamina:["Bradicardia sintomática refratária quando apropriada","Choque selecionado com baixo risco de arritmia"],
+  nitroprussiato:["Emergência hipertensiva","Edema pulmonar hipertensivo","Redução titulada de pós-carga"],
+  nitroglicerina:["Síndrome coronariana com dor ou hipertensão","Edema agudo de pulmão hipertensivo","Controle de pré-carga e isquemia"],
+  adenosina:["Taquicardia supraventricular regular de complexo estreito","Auxílio diagnóstico em taquicardia regular monitorizada"],
+  atropina:["Bradicardia sintomática","Pré-medicação pediátrica selecionada antes da intubação","Intoxicação por organofosforados em protocolo específico"],
+  amiodarona:["FV/TV sem pulso refratária à desfibrilação","Taquicardia ventricular com pulso em paciente estável","Arritmias atriais selecionadas"],
+  fentanil:["Dor aguda intensa","Analgesia para intubação ou procedimento","Analgosedação contínua"],
+  furosemida:["Congestão pulmonar ou periférica","Edema agudo de pulmão com sobrecarga volêmica","Hipercalemia ou hipercalcemia com diurese preservada como adjuvante"],
+  metoprolol:["Controle de frequência em FA/flutter","Síndrome coronariana em paciente selecionado","Hipertensão com indicação de betabloqueador"],
+  diltiazem:["Controle de frequência em FA ou flutter","Taquicardia supraventricular selecionada"],
+  verapamil:["Taquicardia supraventricular de complexo estreito selecionada","Controle de frequência em FA/flutter sem pré-excitação"],
+  hidralazina:["Hipertensão grave na gestação","Hipertensão pediátrica selecionada","Tratamento anti-hipertensivo adjuvante"],
+  "nifedipina-retard":["Tratamento programado da hipertensão","Hipertensão pediátrica com formulação de liberação prolongada"],
+  anlodipino:["Hipertensão arterial","Tratamento anti-hipertensivo pediátrico programado","Angina crônica estável"],
+  labetalol:["Emergência hipertensiva","Hipertensão grave na gestação","Dissecção aguda de aorta em associação ao controle definitivo"],
+  esmolol:["Controle rápido de frequência","Dissecção aguda de aorta","Taquicardia perioperatória ou hipertensão titulável"],
+  captopril:["Hipertensão arterial","Insuficiência cardíaca","Proteinúria em doença renal selecionada"],
+};
+
 const fmt=(n:number,digits=2)=>n.toLocaleString("pt-BR",{maximumFractionDigits:digits});
 
 function Calculator({med}:{med:Medication}){
@@ -374,6 +452,6 @@ function Calculator({med}:{med:Medication}){
 }
 
 export default function MedicationCatalog({initialQuery}:{initialQuery:string}){
-  const[open,setOpen]=useState<string>("dipirona");const list=useMemo(()=>medications.filter(m=>!initialQuery||`${m.name} ${m.aliases.join(" ")} ${m.use}`.toLowerCase().includes(initialQuery.toLowerCase())),[initialQuery]);
-  return <section className="medications" id="medicamentos"><div className="medications-head"><div><small>MEDICAMENTOS</small><h2>Calcule e converta sem sair da tela.</h2><p>Dose em mg e conversão automática para a apresentação selecionada.</p></div><b>{list.length} fichas encontradas</b></div>{list.length?<div className="medication-list">{list.map(m=><article className={`medication ${m.tone} ${open===m.id?"expanded":""}`} key={m.id}><button className="medication-summary" onClick={()=>setOpen(open===m.id?"":m.id)} aria-expanded={open===m.id}><div><small>{m.use}</small><h3>{m.name}</h3><p>{m.aliases.slice(0,3).join(" · ")}</p></div><span>{open===m.id?"−":"+"}</span></button>{open===m.id&&<div className="medication-body"><Calculator med={m}/><div className="meddetails"><div><small>ALERTAS CLÍNICOS</small>{m.alerts.map(a=><p key={a}>⚠ {a}</p>)}</div><div><small>REFERÊNCIAS CLÍNICAS</small>{m.sources.map(s=><p key={s}>{s}</p>)}{m.referenceUrl&&<a href={m.referenceUrl} target="_blank" rel="noreferrer">Consultar referência ↗</a>}</div></div></div>}</article>)}</div>:<div className="empty"><b>Nenhum medicamento encontrado.</b><span>Busque pelo princípio ativo, nome comercial ou indicação.</span></div>}<footer className="medication-status"><span>Catálogo clínico</span><p>{medications.length} medicamentos com cálculo e prescrição rápida.</p></footer></section>
+  const[open,setOpen]=useState<string>("dipirona");const list=useMemo(()=>medications.filter(m=>!initialQuery||`${m.name} ${m.aliases.join(" ")} ${m.use} ${(clinicalIndications[m.id]??[]).join(" ")}`.toLowerCase().includes(initialQuery.toLowerCase())),[initialQuery]);
+  return <section className="medications" id="medicamentos"><div className="medications-head"><div><small>MEDICAMENTOS</small><h2>Calcule e converta sem sair da tela.</h2><p>Dose, indicação clínica e conversão automática para a apresentação selecionada.</p></div><b>{list.length} fichas encontradas</b></div>{list.length?<div className="medication-list">{list.map(m=><article className={`medication ${m.tone} ${open===m.id?"expanded":""}`} key={m.id}><button className="medication-summary" onClick={()=>setOpen(open===m.id?"":m.id)} aria-expanded={open===m.id}><div><small>{m.use}</small><h3>{m.name}</h3><p>{m.aliases.slice(0,3).join(" · ")}</p></div><span>{open===m.id?"−":"+"}</span></button>{open===m.id&&<div className="medication-body"><Calculator med={m}/><div className="meddetails"><div className="indications"><small>INDICAÇÕES CLÍNICAS</small>{(clinicalIndications[m.id]??[m.use]).map(i=><p key={i}>✓ {i}</p>)}</div><div><small>ALERTAS CLÍNICOS</small>{m.alerts.map(a=><p key={a}>⚠ {a}</p>)}</div><div><small>REFERÊNCIAS CLÍNICAS</small>{m.sources.map(s=><p key={s}>{s}</p>)}{m.referenceUrl&&<a href={m.referenceUrl} target="_blank" rel="noreferrer">Consultar referência ↗</a>}</div></div></div>}</article>)}</div>:<div className="empty"><b>Nenhum medicamento encontrado.</b><span>Busque pelo princípio ativo, nome comercial, doença ou indicação clínica.</span></div>}<footer className="medication-status"><span>Catálogo clínico</span><p>{medications.length} medicamentos com indicação, cálculo e prescrição rápida.</p></footer></section>
 }
