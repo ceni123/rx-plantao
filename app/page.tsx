@@ -8,7 +8,7 @@ export default function LandingPage() {
         <nav aria-label="Navegação principal">
           <a href="#como-funciona">Como funciona</a>
           <a href="#recursos">Recursos</a>
-          <Link className="landing-login" href="/login">Entrar</Link>
+          <Link className="landing-login" href="/protocolos">Entrar</Link>
         </nav>
       </header>
 
@@ -18,7 +18,7 @@ export default function LandingPage() {
           <h1>Menos procura.<br/><em>Mais decisão.</em></h1>
           <p className="landing-lead">Protocolos objetivos, doses e calculadoras em uma interface pensada para o momento em que cada segundo importa.</p>
           <div className="landing-actions">
-            <Link className="landing-primary" href="/login">Acessar o Rx Plantão <span>→</span></Link>
+            <Link className="landing-primary" href="/protocolos">Acessar o Rx Plantão <span>→</span></Link>
             <a className="landing-secondary" href="#como-funciona">Conhecer a plataforma</a>
           </div>
           <div className="landing-proof"><b>Adulto</b><b>Pediatria</b><b>Emergências</b><b>Infusões</b></div>
@@ -55,7 +55,7 @@ export default function LandingPage() {
 
       <section className="landing-cta">
         <div><small>SEU PRÓXIMO PLANTÃO COMEÇA AQUI</small><h2>Tenha o essencial à mão.</h2></div>
-        <Link className="landing-primary light" href="/login">Entrar na plataforma <span>→</span></Link>
+        <Link className="landing-primary light" href="/protocolos">Entrar na plataforma <span>→</span></Link>
       </section>
 
       <footer className="landing-footer"><a className="brand" href="#inicio"><b>Rx</b><strong>Rx <span>Plantão</span></strong></a><p>Protocolos rápidos e calculadoras para pronto-socorro.</p><span>© 2026 Rx Plantão</span></footer>

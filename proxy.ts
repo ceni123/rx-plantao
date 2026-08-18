@@ -42,6 +42,13 @@ export async function proxy(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
+  if (user && isPublicHome) {
+    const url = request.nextUrl.clone();
+    url.pathname = "/protocolos";
+    url.search = "";
+    return NextResponse.redirect(url);
+  }
+
   return response;
 }
 
