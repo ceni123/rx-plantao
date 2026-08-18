@@ -2,6 +2,7 @@
 import { useEffect, useMemo, useState } from "react";
 import SignOutButton from "../sign-out-button";
 import { createClient } from "../../utils/supabase/client";
+import MedicationCatalog from "./medication-catalog";
 
 type P={id:string;title:string;sub:string;age:"Adulto"|"Pediatria"|"Ambos";cat:"Emergência"|"Antibiótico"|"Infusão"|"Comum";tone:string;steps:[string,string][];alerts:string[];source:string;url:string;local?:boolean};
 const data:P[]=[
@@ -42,6 +43,7 @@ return <main><header><a className="brand" href="#top"><b>Rx</b><strong>Rx <span>
 <section className="hero" id="top"><div><p className="eyebrow">Apoio à decisão no pronto-socorro</p><h1>O essencial, <em>sem perder tempo.</em></h1><p>Protocolos rápidos para adultos e pediatria, com alertas de segurança e fonte em cada conduta.</p></div><aside><b>Plantão</b><span>modo rápido</span></aside></section>
 <section className="work"><div className="search"><span>⌕</span><input value={q} onChange={e=>setQ(e.target.value)} placeholder="Buscar condição, medicamento ou protocolo…"/><kbd>/</kbd></div><div className="filters"><nav>{ages.map(x=><button key={x} className={age===x?"on":""} onClick={()=>setAge(x)}>{x}</button>)}</nav><nav>{cats.map(x=><button key={x} className={cat===x?"on dark":""} onClick={()=>setCat(x)}>{x}</button>)}</nav></div>
 <div className="sectiontitle"><div><small>PROTOCOLOS</small><h2>{list.length} atalhos disponíveis</h2></div><a href="#vaso">Abrir calculadora de bomba ↓</a></div><div className="grid">{list.map((p,i)=><button className={`card ${p.tone}`} key={p.id} onClick={()=>{setOpen(p);document.body.style.overflow="hidden"}}><div className="cardtop"><span>{String(i+1).padStart(2,"0")}</span><b>{p.age}</b></div><div><small>{p.cat}</small><h3>{p.title}</h3><p>{p.sub}</p></div><footer><span>{p.steps.length} etapas</span>{p.local?<b>Validar localmente</b>:<i>→</i>}</footer></button>)}</div>{!list.length&&<div className="empty"><b>Nenhum protocolo encontrado.</b><span>Remova um filtro ou use um termo mais amplo.</span></div>}</section>
+<MedicationCatalog initialQuery={q}/>
 <VasoCalculator/>
 <section className="safety"><b>!</b><div><small>BARREIRA DE SEGURANÇA</small><h2>Antes de assinar, pare por 10 segundos.</h2></div><ul><li>Paciente e peso corretos</li><li>Alergias e gestação</li><li>Função renal e hepática</li><li>Concentração e dose máxima</li></ul></section>
 <div className="legal"><strong>Rx Plantão</strong><span>Ferramenta educacional de apoio. A decisão e a prescrição permanecem sob responsabilidade do profissional habilitado.</span></div>
