@@ -1,6 +1,6 @@
 import type {Metadata} from "next";import "./globals.css";
 export const metadata:Metadata={
-  metadataBase:new URL("https://rx-plantao.vercel.app"),
+  metadataBase:new URL("https://www.rxdoplantao.com.br"),
   title:{default:"Rx Plantão — Decisão rápida no pronto-socorro",template:"%s | Rx Plantão"},
   description:"Protocolos objetivos, doses e calculadoras para decisões rápidas no pronto-socorro adulto e pediátrico.",
   applicationName:"Rx Plantão",

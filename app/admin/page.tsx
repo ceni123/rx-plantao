@@ -35,7 +35,7 @@ export default async function AdminPage() {
     const { data: { user: actionUser } } = await actionClient.auth.getUser();
     if (!actionUser || actionUser.app_metadata?.role !== "owner") redirect("/");
     await actionClient.auth.resetPasswordForEmail(email, {
-      redirectTo: "https://rx-plantao.vercel.app/set-password",
+      redirectTo: "https://www.rxdoplantao.com.br/set-password",
     });
     redirect("/admin?reset=sent");
   }
@@ -44,7 +44,7 @@ export default async function AdminPage() {
     <main className="min-h-screen bg-[#f5f5ef]">
       <header className="static">
         <a className="brand" href="/"><b>Rx</b><strong>Rx <span>Plantão</span></strong></a>
-        <a className="font-mono text-[9px] font-bold uppercase tracking-wide text-[#1f5845] no-underline" href="/">Voltar aos protocolos</a>
+        <a className="font-mono text-[9px] font-bold uppercase tracking-wide text-[#1f5845] no-underline" href="/protocolos">Voltar aos protocolos</a>
       </header>
 
       <section className="mx-auto max-w-[1160px] px-4 py-12 md:px-6 md:py-14">

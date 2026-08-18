@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [{
-    url: "https://rx-plantao.vercel.app",
+    url: "https://www.rxdoplantao.com.br",
     lastModified: new Date(),
     changeFrequency: "weekly",
     priority: 1,

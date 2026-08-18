@@ -7,7 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/protocolos", "/admin", "/login", "/set-password", "/auth/"],
     },
-    sitemap: "https://rx-plantao.vercel.app/sitemap.xml",
-    host: "https://rx-plantao.vercel.app",
+    sitemap: "https://www.rxdoplantao.com.br/sitemap.xml",
+    host: "https://www.rxdoplantao.com.br",
   };
 }
